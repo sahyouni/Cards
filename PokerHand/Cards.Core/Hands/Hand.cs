@@ -1,28 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
-namespace PlayingCards.Core.Hands
+namespace Cards.Core.Hands
 {
-	public abstract class Hand
+	/// <summary>
+	/// a hand is a card collection of 5 cards.
+	/// </summary>
+	public class Hand : CardCollection
 	{
-		private readonly IList<Card> _cards;
-
-		protected readonly HandType Type;
-
-		public abstract HandType HandType { get; }
-
-		protected Hand(IList<Card> cards, HandType type)
+		public Hand(IList<Card> cards) : base(cards)
 		{
-			_cards = cards;
-			Type = type;
+			if(cards ==null || cards.Count !=5)
+				throw new ArgumentOutOfRangeException(nameof(cards));
 		}
+
+		protected HandType HandType { get; set; }
 	}
 
-
-
-
-
-
-	
 	public enum HandType
 	{
 		HighCard = 0,

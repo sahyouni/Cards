@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace PlayingCards.Core.Hands
+namespace Cards.Core.Hands
 {
 
 	public class OnePair : Hand
 	{
-		public OnePair(IList<Card> cards) : base(cards, HandType.OnePair)
+		public OnePair(IList<Card> cards) : base(cards)
 		{
+			HandType = HandType.OnePair;
 		}
-
-		public override HandType HandType => Type;
 	}
 }

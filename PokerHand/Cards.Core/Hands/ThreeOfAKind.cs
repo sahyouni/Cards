@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace PlayingCards.Core.Hands
+namespace Cards.Core.Hands
 {
 
 	public class ThreeOfAKind : Hand
 	{
-		public ThreeOfAKind(IList<Card> cards) : base(cards, HandType.ThreeOfKind)
+		public ThreeOfAKind(IList<Card> cards) : base(cards)
 		{
+			HandType = HandType.ThreeOfKind;
 		}
-
-		public override HandType HandType => Type;
 	}
 }

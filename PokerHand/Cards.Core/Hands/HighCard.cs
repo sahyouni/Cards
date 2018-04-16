@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace PlayingCards.Core.Hands
+namespace Cards.Core.Hands
 {
 	public class HighCard : Hand
 	{
-		public HighCard(IList<Card> cards) : base(cards, HandType.HighCard)
+		public HighCard(IList<Card> cards) : base(cards)
 		{
-
+			HandType = HandType.Flush;
 		}
-
-		public override HandType HandType => Type;
 	}
 }
