@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PokerHand
+namespace PlayingCards.Core
 {
-    public class Class1
-    {
-    }
+	public class Game
+	{
+	}
 }
