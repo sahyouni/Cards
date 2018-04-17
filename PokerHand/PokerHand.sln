@@ -1,13 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.15
+VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cards.Core", "Cards.Core\Cards.Core.csproj", "{52B1AA90-66BE-4D9E-A380-A161130F6774}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cards.Api", "Cards.Api\Cards.Api.csproj", "{53CF65AB-83F7-4778-BFB5-E7ACFB54C443}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cards.Api.Tests", "Cards.Api.Tests\Cards.Api.Tests.csproj", "{6C698FE7-E5F0-4091-B901-AD6CD99257F4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cards.ClientOne", "Cards.ClientOne\Cards.ClientOne.csproj", "{DD1E1975-C48D-4BFB-B404-D284D4AB0855}"
 EndProject
@@ -23,14 +19,6 @@ Global
 		{52B1AA90-66BE-4D9E-A380-A161130F6774}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52B1AA90-66BE-4D9E-A380-A161130F6774}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52B1AA90-66BE-4D9E-A380-A161130F6774}.Release|Any CPU.Build.0 = Release|Any CPU
-		{53CF65AB-83F7-4778-BFB5-E7ACFB54C443}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{53CF65AB-83F7-4778-BFB5-E7ACFB54C443}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{53CF65AB-83F7-4778-BFB5-E7ACFB54C443}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{53CF65AB-83F7-4778-BFB5-E7ACFB54C443}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6C698FE7-E5F0-4091-B901-AD6CD99257F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6C698FE7-E5F0-4091-B901-AD6CD99257F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6C698FE7-E5F0-4091-B901-AD6CD99257F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6C698FE7-E5F0-4091-B901-AD6CD99257F4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DD1E1975-C48D-4BFB-B404-D284D4AB0855}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DD1E1975-C48D-4BFB-B404-D284D4AB0855}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD1E1975-C48D-4BFB-B404-D284D4AB0855}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -42,5 +30,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {72DA0145-7224-4FF9-94CE-2562B9D57FCF}
 	EndGlobalSection
 EndGlobal
