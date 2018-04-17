@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Cards.Core.Hands;
 
 namespace Cards.Core
@@ -12,26 +9,67 @@ namespace Cards.Core
 	{
 		protected readonly IList<Card> Cards;
 
+		protected virtual void Validate()
+		{
+			
+		}
+
+		public CardCollection() { }
+
 		public CardCollection(IList<Card> cards)
 		{
 			Cards = cards;
+
+			if (Cards == null)
+				throw new ArgumentOutOfRangeException(nameof(Cards));
+
+			if (Cards.HasDuplicates())
+				throw new ArgumentOutOfRangeException(nameof(Cards));
 		}
 
-		public IList<Card> Collection => Cards.ToList().AsReadOnly();
+		public IList<Card> Collection => Cards.ToList();
 
 		//use ref to change the reference itself not the object
 		public bool IsHand(ref Hand hand)
 		{
-			bool result = false;
+			if (Cards == null || Cards.Count != 5)
+				return false;
 
-			//check if flush
-			if (Cards.GroupBy(card => card.Suit).Count() == 1)
+
+			if (IsFlush())
 			{
-				result = true;
 				hand = new Flush(Cards);
+				return true;
 			}
 
-			return result;
+			if (IsThreeOfAKind())
+			{
+				hand = new ThreeOfAKind(Cards);
+				return true;
+			}
+
+			if (IsOnePair())
+			{
+				hand = new OnePair(Cards);
+				return true;
+			}
+
+			return false;
+		}
+
+		private bool IsFlush()
+		{
+			return Cards.GroupBy(card => card.Suit).Count() == 1;
+		}
+
+		private bool IsOnePair()
+		{
+			return Cards.GroupBy(card => card.Value).Any(group => group.Count() == 2);
+		}
+
+		private bool IsThreeOfAKind()
+		{
+			return Cards.GroupBy(card => card.Value).Any(group => group.Count() >= 3);
 		}
 	}
 }

@@ -42,9 +42,9 @@
   <ItemGroup>
     <Compile Include="Card.cs" />
     <Compile Include="CardCollection.cs" />
+    <Compile Include="CardEqualityComparer.cs" />
     <Compile Include="Deck.cs" />
     <Compile Include="Games\Game.cs" />
-    <Compile Include="Games\PokerGame.cs" />
     <Compile Include="Games\Score.cs" />
     <Compile Include="Hands\Flush.cs" />
     <Compile Include="Hands\Hand.cs" />
@@ -55,6 +55,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shuffling\FisherYatesStrategy.cs" />
     <Compile Include="Shuffling\IShuffleStrategy.cs" />
+    <Compile Include="Utilities.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

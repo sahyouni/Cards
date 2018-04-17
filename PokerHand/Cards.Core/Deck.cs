@@ -12,7 +12,7 @@ namespace Cards.Core
 {
 	public class Deck
 	{
-		private readonly Game _game;
+		private readonly PokerGame _pokerGame;
 
 		private bool _isSorted;
 
@@ -22,9 +22,9 @@ namespace Cards.Core
 
 		public IShuffleStrategy ShuffleStrategy { get; set; }
 
-		public Deck(Game game)
+		public Deck(PokerGame pokerGame)
 		{
-			_game = game;
+			_pokerGame = pokerGame;
 			_isSorted = true;
 			InitiliazeDeck();
 		}

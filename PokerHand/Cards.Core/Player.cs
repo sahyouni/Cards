@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cards.Core.Hands;
 
 namespace Cards.Core
 {
@@ -8,25 +9,48 @@ namespace Cards.Core
 	{
 		public int Id { get; set; }
 
-		public string Name { get; set;  }
+		public virtual string Name { get; set; }
 
-		public IList<Card> CurrentCards { get;  private set; }
+		public virtual CardCollection CurrentCards { get; private set; }
+
+		public Hand GetCurrentHandOrNull()
+		{
+			Hand hand = null;
+			if (CurrentCards.IsHand(ref hand))
+			{
+				return hand;
+			}
+
+			return new NullHand();
+		}
 
 		public void DealCards(CardCollection collection)
 		{
-			CurrentCards = collection.Collection;
+			CurrentCards = collection;
+		}
+
+		public void ResetCards()
+		{
+			CurrentCards.Collection.Clear();
 		}
 
 		public override string ToString()
 		{
-			string result = "Player Id: " + Id + ". Name: " + Name + Environment.NewLine;
+			string result = "Player Id: " + Id + ". Name: " + Name + " Number of Cards: " + CurrentCards.Collection.Count + Environment.NewLine;
 
-			foreach (var card in CurrentCards)
+			foreach (var card in CurrentCards.Collection)
 			{
 				result += card;
 				result += Environment.NewLine;
 			}
 			return result;
 		}
+	}
+
+	public class NoPlayer : Player
+	{
+		public override string Name => "N/A";
+
+		public override CardCollection CurrentCards => new CardCollection(null);
 	}
 }
