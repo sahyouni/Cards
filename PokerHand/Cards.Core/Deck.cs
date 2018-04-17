@@ -1,36 +1,34 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using Cards.Core.Games;
-using Cards.Core.Hands;
+using Cards.Core.Cards;
 using Cards.Core.Shuffling;
 
 namespace Cards.Core
 {
+	/// <summary>
+	/// represents a deck of cards. When initially created, the deck is sorted. Calling the Shuffle() method shuffles the cards in the deck
+	/// </summary>
 	public class Deck
 	{
 		private readonly PokerGame _pokerGame;
 
 		private bool _isSorted;
 
-		private readonly Random _randomGenerator = new Random();
-
-		public IList<Card> Cards { get; set; }
-
-		public IShuffleStrategy ShuffleStrategy { get; set; }
-
-		public Deck(PokerGame pokerGame)
-		{
-			_pokerGame = pokerGame;
-			_isSorted = true;
-			InitiliazeDeck();
-		}
+		/// <summary>
+		/// the cards in the deck. keeping this private to avoid other objects from messing with the cards
+		/// </summary>
+		private IList<Card> Cards { get; set; }
 
 		/// <summary>
-		/// creates an ordered deck
+		/// this is a candidate for property DI
+		/// </summary>
+		public IShuffleStrategy ShuffleStrategy { get; set; }
+
+		#region private methods
+		/// <summary>
+		/// creates an ordered deck i.e. initializes the cards in the deck
 		/// </summary>
 		private void InitiliazeDeck()
 		{
@@ -44,7 +42,21 @@ namespace Cards.Core
 				}
 			}
 		}
+		#endregion
 
+		/// <summary>
+		/// A deck can be created based on a game of poker
+		/// </summary>
+		/// <param name="pokerGame"></param>
+		public Deck(PokerGame pokerGame)
+		{
+			_pokerGame = pokerGame;
+			_isSorted = true;
+			InitiliazeDeck();
+		}
+
+
+		#region public methods
 		/// <summary>
 		/// exchange each element with a randomly picked element
 		/// </summary>
@@ -62,12 +74,12 @@ namespace Cards.Core
 		/// <summary>
 		/// picks a number of cards from the top of the deck
 		/// </summary>
-		/// <param name="number"></param>
-		/// <returns></returns>
+		/// <param name="number">the number of cards to pick from the deck</param>
+		/// <returns>the collection of cards</returns>
 		public CardCollection Pick(int number)
 		{
 			//check if there are enough cards in the deck
-			if(Cards.Count < number)
+			if (Cards.Count < number)
 				throw new ArgumentException("cannot pick " + number + " from a deck that has " + Cards.Count + " card(s).");
 
 			//make sure you pick from a shuffled deck
@@ -87,6 +99,25 @@ namespace Cards.Core
 			return new CardCollection(result);
 		}
 
+		/// <summary>
+		/// get a single card from the top of the deck
+		/// </summary>
+		/// <returns></returns>
+		public Card PickCard()
+		{
+			return Pick(1).Collection.First();
+		}
+
+		/// <summary>
+		/// pick a specific card from the deck
+		/// </summary>
+		/// <param name="card">the card we are looking for</param>
+		/// <returns></returns>
+		public Card FindCard(Card card)
+		{
+			return Pick(1).Collection.FirstOrDefault(x => x.Equals(card));
+		}
+
 		public string DisplayDeck()
 		{
 			StringBuilder builder = new StringBuilder("Total cards in deck: " + Cards.Count + ". Is deck sorted?: " + _isSorted + Environment.NewLine);
@@ -101,5 +132,7 @@ namespace Cards.Core
 
 			return builder.ToString();
 		}
+
+		#endregion
 	}
 }

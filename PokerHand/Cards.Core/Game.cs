@@ -2,7 +2,7 @@
 using System.Linq;
 using Cards.Core.Hands;
 
-namespace Cards.Core.Games
+namespace Cards.Core
 {
 	/// <summary>
 	/// A game of poker
@@ -24,17 +24,16 @@ namespace Cards.Core.Games
 			{
 				Hand h = p.GetCurrentHandOrNull();
 
-				if (!(h is NullHand))
+				if (!(h is Hand.NullHand))
 					hands.Add(h, p);
 			}
 
+			if(hands.Count ==0)
+				return Player.UnknownPlayer;
+
 			//top player
-			Player topRankPlayer = hands.First().Value;
-			Hand highestHand = hands.First().Key;
-
-			if (highestHand.Rank <= 0)
-				return new NoPlayer();
-
+			Player topRankPlayer = hands.Last().Value;
+		
 			return topRankPlayer;
 		}
 

@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using Cards.Core.Hands;
 
-namespace Cards.Core
+namespace Cards.Core.Cards
 {
+	/// <summary>
+	/// represents a collection of cards
+	/// </summary>
 	public class CardCollection
 	{
 		protected readonly IList<Card> Cards;
 
-		protected virtual void Validate()
-		{
-			
-		}
+		protected virtual void Validate() { }
 
 		public CardCollection() { }
 
@@ -29,9 +29,16 @@ namespace Cards.Core
 
 		public IList<Card> Collection => Cards.ToList();
 
-		//use ref to change the reference itself not the object
+		/// <summary>
+		/// checks if the collection is a hand. returns true if yes and false otherwise. In case it is a hand,
+		/// the hand is returned. Otherwise, a NullHand is returned
+		/// </summary>
+		/// <param name="hand"></param>
+		/// <returns></returns>
 		public bool IsHand(ref Hand hand)
 		{
+			hand = Hand.EmptyHand;
+
 			if (Cards == null || Cards.Count != 5)
 				return false;
 

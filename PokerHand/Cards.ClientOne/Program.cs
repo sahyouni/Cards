@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cards.Core;
-using Cards.Core.Games;
+using Cards.Core.Cards;
 using Cards.Core.Hands;
 
 

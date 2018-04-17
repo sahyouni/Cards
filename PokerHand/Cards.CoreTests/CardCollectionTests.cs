@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Cards.Core;
+using Cards.Core.Cards;
 using Cards.Core.Hands;
 using NUnit.Framework;
 
@@ -26,7 +27,7 @@ namespace Cards.CoreTests
 
 			Assert.IsFalse(actual);
 
-			Assert.IsNull(hand);
+			Assert.IsTrue(hand.GetType() == typeof(Hand.NullHand));
 		}
 
 		[Test]
@@ -48,7 +49,7 @@ namespace Cards.CoreTests
 
 			Assert.IsFalse(actual);
 
-			Assert.IsNull(hand);
+			Assert.IsTrue(hand.GetType() == typeof(Hand.NullHand));
 		}
 
 		[Test]
@@ -70,19 +71,19 @@ namespace Cards.CoreTests
 
 			Assert.IsFalse(actual);
 
-			Assert.IsNull(hand);
+			Assert.IsTrue(hand.GetType() == typeof(Hand.NullHand));
 		}
 
 		[Test]
 		public void IsHand_Returns_False_When_CardCollectionCount_IsNull()
 		{
-			CardCollection target = new CardCollection(null);
+			CardCollection target = new CardCollection();
 			Hand hand = null;
 			bool actual = target.IsHand(ref hand);
 
 			Assert.IsFalse(actual);
 
-			Assert.IsNull(hand);
+			Assert.IsTrue(hand.GetType() == typeof(Hand.NullHand));
 		}
 
 		#endregion

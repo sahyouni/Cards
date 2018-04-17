@@ -1,4 +1,4 @@
-﻿namespace Cards.Core.Games
+﻿namespace Cards.Core
 {
 	public class Score
 	{

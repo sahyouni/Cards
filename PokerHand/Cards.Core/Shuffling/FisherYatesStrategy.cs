@@ -10,7 +10,6 @@ namespace Cards.Core.Shuffling
 	{
 		private readonly Random _randomGenerator = new Random();
 
-
 		public void Shuffle(IList<Card> cards)
 		{
 			int n = cards.Count;
@@ -24,7 +23,6 @@ namespace Cards.Core.Shuffling
 				cards[k] = cards[n];
 				cards[n] = value;
 			}
-
 		}
 	}
 }

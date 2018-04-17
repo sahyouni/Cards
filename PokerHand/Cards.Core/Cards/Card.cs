@@ -1,5 +1,8 @@
 ﻿namespace Cards.Core
 {
+	/// <summary>
+	/// represents a card. Has a Suit and a Value. For example, Ace of Spades
+	/// </summary>
 	public class Card
 	{
 		public Card(Suit suit, Value value)
@@ -8,8 +11,15 @@
 			Value = value;
 		}
 
+
+		/// <summary>
+		/// A suit such as Hearts, Spaces etc..
+		/// </summary>
 		public Suit Suit { get; }
 
+		/// <summary>
+		/// the value of the card
+		/// </summary>
 		public Value Value { get; }
 
 		public override string ToString()

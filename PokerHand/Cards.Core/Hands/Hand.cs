@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Cards.Core.Cards;
 
 namespace Cards.Core.Hands
 {
@@ -32,28 +33,22 @@ namespace Cards.Core.Hands
 			// If other is not a valid object reference, this instance is greater.
 			if (other == null) return 1;
 
-			return Rank.CompareTo(other.Rank);
+			return HandType.CompareTo(other.HandType);
+		}
+
+		public static Hand EmptyHand => new NullHand();
+
+		/// <summary>
+		/// null object pattern here. I need a NullableHand object.
+		/// </summary>
+		public class NullHand : Hand
+		{
+			protected override void Validate()
+			{
+
+			}
 		}
 	}
-
-	public class NullHand : Hand
-	{
-		protected override void Validate()
-		{
-			
-		}
-
-		public NullHand()
-		{
-			
-		}
-
-		public NullHand(IList<Card> cards) : base(new List<Card>())
-		{
-			HandType = HandType.Unknown;
-		}
-	}
-
 	/// <summary>
 	/// define an enumeration that defines the hands along with the rank of each hand. sorted ascending. bigger is better
 	/// </summary>

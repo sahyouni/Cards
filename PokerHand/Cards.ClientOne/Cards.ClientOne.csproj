@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="ClassDiagram1.cd" />
+    <None Include="Model.cd" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cards.Core\Cards.Core.csproj">

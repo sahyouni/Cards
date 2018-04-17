@@ -1,6 +1,5 @@
 ﻿
 using Cards.Core;
-using Cards.Core.Games;
 using Cards.Core.Shuffling;
 using NUnit.Framework;
 
