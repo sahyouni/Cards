@@ -26,6 +26,9 @@ namespace Cards.Core
 		/// </summary>
 		public IShuffleStrategy ShuffleStrategy { get; set; }
 
+
+		public bool IsSorted {  get { return !_isSorted; } }
+
 		#region private methods
 		/// <summary>
 		/// creates an ordered deck i.e. initializes the cards in the deck

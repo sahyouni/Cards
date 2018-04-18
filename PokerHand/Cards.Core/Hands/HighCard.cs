@@ -6,7 +6,7 @@ namespace Cards.Core.Hands
 	{
 		public HighCard(IList<Card> cards) : base(cards)
 		{
-			HandType = HandType.Flush;
+			HandType = HandType.HighCard;
 		}
 	}
 }

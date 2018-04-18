@@ -28,6 +28,10 @@ namespace Cards.CoreTests
 
 		}
 
+		[Test]
+		public void Deck_Shuffles()
+		{
 
+		}
 	}
 }
