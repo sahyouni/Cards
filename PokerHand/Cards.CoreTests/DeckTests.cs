@@ -1,6 +1,9 @@
-﻿
+
+using System.Collections;
+using System.Collections.Generic;
 using Cards.Core;
 using Cards.Core.Shuffling;
+using Moq;
 using NUnit.Framework;
 
 namespace Cards.CoreTests
@@ -29,9 +32,32 @@ namespace Cards.CoreTests
 		}
 
 		[Test]
-		public void Deck_Shuffles()
+		public void Deck_Shuffle_Marks_Deck_As_NotSorted()
 		{
+			Deck deck = new Deck(new PokerGame());
 
+			Assert.IsFalse(deck.IsSorted);
+
+			deck.Shuffle();
+
+			Assert.IsTrue(deck.IsSorted);
 		}
+
+		[Test]
+		public void Deck_Shuffle_Calls_Shuffle_On_Shuffling_Strategy()
+		{
+			Deck deck = new Deck(new PokerGame());
+			
+			var mock = new Mock<IShuffleStrategy>();
+			mock.Setup(x => x.Shuffle(It.IsAny<IList<Card>>())).Verifiable("shuffle was not called on strategy");
+
+			deck.ShuffleStrategy = mock.Object;
+
+			deck.Shuffle();
+
+			mock.VerifyAll();
+		}
+
+
 	}
 }
