@@ -81,7 +81,7 @@ namespace Cards.Core
 		/// </summary>
 		/// <param name="number">the number of cards to pick from the deck</param>
 		/// <returns>the collection of cards</returns>
-		public CardCollection GetTopCards(int number)
+		public CardCollection Pick(int number)
 		{
 			//check if there are enough cards in the deck
 			if (Cards.Count < number || number <= 0)
@@ -103,7 +103,16 @@ namespace Cards.Core
 
 			return new CardCollection(result);
 		}
-		
+
+		/// <summary>
+		/// get a single card from the top of the deck
+		/// </summary>
+		/// <returns></returns>
+		public Card PickCard()
+		{
+			return Pick(1).Collection.First();
+		}
+
 		/// <summary>
 		/// pick a specific card from the deck
 		/// </summary>
@@ -111,8 +120,7 @@ namespace Cards.Core
 		/// <returns></returns>
 		public Card FindCard(Card card)
 		{
-			//probably buggy
-			return GetTopCards(1).Collection.FirstOrDefault(x => x.Equals(card));
+			return Pick(1).Collection.FirstOrDefault(x => x.Suit == card.Suit && x.Value == card.Value);
 		}
 
 		public string DisplayDeck()

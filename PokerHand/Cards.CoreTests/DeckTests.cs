@@ -66,7 +66,7 @@ namespace Cards.CoreTests
 			var mock = new Mock<IShuffleStrategy>();
 			mock.Setup(x => x.Shuffle(It.IsAny<IList<Card>>())).Verifiable("shuffle was not called on strategy");
 
-			Assert.That(() => deck.GetTopCards(0), Throws.ArgumentException);
+			Assert.That(() => deck.Pick(0), Throws.ArgumentException);
 		}
 
 		[Test]
@@ -77,7 +77,7 @@ namespace Cards.CoreTests
 			var mock = new Mock<IShuffleStrategy>();
 			mock.Setup(x => x.Shuffle(It.IsAny<IList<Card>>())).Verifiable("shuffle was not called on strategy");
 
-			Assert.That(() => deck.GetTopCards(53), Throws.ArgumentException);
+			Assert.That(() => deck.Pick(53), Throws.ArgumentException);
 		}
 
 		[Test]
@@ -91,11 +91,12 @@ namespace Cards.CoreTests
 
 			Assert.IsFalse(deck.IsSorted);
 
-			var cards = deck.GetTopCards(2);
+			var cards = deck.Pick(2);
 
 			Assert.IsTrue(deck.IsSorted);
 		}
 
+		/*
 		[Test]
 		public void Deck_FindCard_Returns_A_Card_When_Card_IsInDeck()
 		{
@@ -136,10 +137,11 @@ namespace Cards.CoreTests
 
 			Assert.AreEqual(52, deck.CardsCount);
 
-			var actual = deck.FindCard(new Card(Suit.Spades, Value.Ace));
+			var actual
+			= deck.FindCard(new Card(Suit.Spades, Value.Ace));
 
 			Assert.AreEqual(51, deck.CardsCount);
 		}
-
+		*/
 	}
 }
