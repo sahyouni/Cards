@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Cards.Core;
 
@@ -28,7 +28,7 @@ namespace Cards.CoreTests
 			Assert.AreEqual(3, hands.IndexOf(highCard));
 
 			hands.Sort();
-
+			
 			Assert.AreEqual(highCard, hands[0]);
 			Assert.AreEqual(onePair, hands[1]);
 			Assert.AreEqual(threeOfAKind, hands[2]);
