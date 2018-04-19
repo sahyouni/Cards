@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Cards.Core;
 
@@ -19,18 +19,20 @@ namespace Cards.CoreTests
 			Hand threeOfAKind = new ThreeOfAKind(new List<Card>());
 			Hand highCard = new HighCard(new List<Card>());
 
-			IList<Hand> hands = new List<Hand> { threeOfAKind, onePair, flush, highCard };
+			List<Hand> hands = new List<Hand> { threeOfAKind, onePair, flush, highCard };
 
 			//verify unsorted order
 			Assert.AreEqual(0, hands.IndexOf(threeOfAKind));
 			Assert.AreEqual(1, hands.IndexOf(onePair));
 			Assert.AreEqual(2, hands.IndexOf(flush));
+			Assert.AreEqual(3, hands.IndexOf(highCard));
 
-			hands.ToList().Sort();
-
-			Assert.AreEqual(0, hands.IndexOf(threeOfAKind));
-			Assert.AreEqual(1, hands.IndexOf(onePair));
-			Assert.AreEqual(2, hands.IndexOf(flush));
+			hands.Sort();
+			
+			Assert.AreEqual(highCard, hands[0]);
+			Assert.AreEqual(onePair, hands[1]);
+			Assert.AreEqual(threeOfAKind, hands[2]);
+			Assert.AreEqual(flush, hands[3]);
 		}
 
 		[Test]
@@ -42,18 +44,20 @@ namespace Cards.CoreTests
 			Hand threeOfAKind = new ThreeOfAKind(new List<Card>());
 			Hand highCard = new HighCard(new List<Card>());
 
-			IList<Hand> hands = new List<Hand> { onePair, threeOfAKind, flush, highCard };
+			List<Hand> hands = new List<Hand> { onePair, threeOfAKind, flush, highCard };
 
 			//verify unsorted order
-			Assert.AreEqual(0, hands.IndexOf(threeOfAKind));
-			Assert.AreEqual(1, hands.IndexOf(onePair));
+			Assert.AreEqual(0, hands.IndexOf(onePair));
+			Assert.AreEqual(1, hands.IndexOf(threeOfAKind));
 			Assert.AreEqual(2, hands.IndexOf(flush));
+			Assert.AreEqual(3, hands.IndexOf(highCard));
 
-			hands.ToList().Sort();
+			hands.Sort();
 
-			Assert.AreEqual(0, hands.IndexOf(threeOfAKind));
-			Assert.AreEqual(1, hands.IndexOf(onePair));
-			Assert.AreEqual(2, hands.IndexOf(flush));
+			Assert.AreEqual(highCard, hands[0]);
+			Assert.AreEqual(onePair, hands[1]);
+			Assert.AreEqual(threeOfAKind, hands[2]);
+			Assert.AreEqual(flush, hands[3]);
 		}
 
 		[Test]
@@ -65,18 +69,19 @@ namespace Cards.CoreTests
 			Hand threeOfAKind = new ThreeOfAKind(new List<Card>());
 			Hand highCard = new HighCard(new List<Card>());
 
-			IList<Hand> hands = new List<Hand> { onePair, flush, highCard, threeOfAKind };
+			List<Hand> hands = new List<Hand> { onePair, flush, highCard, threeOfAKind };
 
 			//verify unsorted order
-			Assert.AreEqual(0, hands.IndexOf(threeOfAKind));
-			Assert.AreEqual(1, hands.IndexOf(onePair));
-			Assert.AreEqual(2, hands.IndexOf(flush));
+			Assert.AreEqual(0, hands.IndexOf(onePair));
+			Assert.AreEqual(1, hands.IndexOf(flush));
+			Assert.AreEqual(2, hands.IndexOf(highCard));
+			Assert.AreEqual(3, hands.IndexOf(threeOfAKind));
 
-			hands.ToList().Sort();
-
-			Assert.AreEqual(0, hands.IndexOf(threeOfAKind));
-			Assert.AreEqual(1, hands.IndexOf(onePair));
-			Assert.AreEqual(2, hands.IndexOf(flush));
+			hands.Sort();
+			Assert.AreEqual(highCard, hands[0]);
+			Assert.AreEqual(onePair, hands[1]);
+			Assert.AreEqual(threeOfAKind, hands[2]);
+			Assert.AreEqual(flush, hands[3]);
 		}
 	}
 }
