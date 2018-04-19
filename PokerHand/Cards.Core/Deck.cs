@@ -27,7 +27,9 @@ namespace Cards.Core
 		public IShuffleStrategy ShuffleStrategy { get; set; }
 
 
-		public bool IsSorted {  get { return !_isSorted; } }
+		public bool IsSorted { get { return !_isSorted; } }
+
+		public int CardsCount { get { return Cards.Count; } }
 
 		#region private methods
 		/// <summary>
@@ -79,10 +81,10 @@ namespace Cards.Core
 		/// </summary>
 		/// <param name="number">the number of cards to pick from the deck</param>
 		/// <returns>the collection of cards</returns>
-		public CardCollection Pick(int number)
+		public CardCollection GetTopCards(int number)
 		{
 			//check if there are enough cards in the deck
-			if (Cards.Count < number)
+			if (Cards.Count < number || number <= 0)
 				throw new ArgumentException("cannot pick " + number + " from a deck that has " + Cards.Count + " card(s).");
 
 			//make sure you pick from a shuffled deck
@@ -101,16 +103,7 @@ namespace Cards.Core
 
 			return new CardCollection(result);
 		}
-
-		/// <summary>
-		/// get a single card from the top of the deck
-		/// </summary>
-		/// <returns></returns>
-		public Card PickCard()
-		{
-			return Pick(1).Collection.First();
-		}
-
+		
 		/// <summary>
 		/// pick a specific card from the deck
 		/// </summary>
@@ -118,7 +111,8 @@ namespace Cards.Core
 		/// <returns></returns>
 		public Card FindCard(Card card)
 		{
-			return Pick(1).Collection.FirstOrDefault(x => x.Equals(card));
+			//probably buggy
+			return GetTopCards(1).Collection.FirstOrDefault(x => x.Equals(card));
 		}
 
 		public string DisplayDeck()

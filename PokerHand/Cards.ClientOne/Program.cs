@@ -36,7 +36,7 @@ namespace Cards.ClientOne
 			Console.WriteLine(deck.DisplayDeck());
 
 			//pick 5 cards from deck
-			CardCollection cards = deck.Pick(5);
+			CardCollection cards = deck.GetTopCards(5);
 
 			//distribute cards to player 1
 			player1.DealCards(cards);
@@ -46,7 +46,7 @@ namespace Cards.ClientOne
 			Console.WriteLine(deck.DisplayDeck());
 
 			//distribute another 5 cards to player 2
-			player2.DealCards(deck.Pick(5));
+			player2.DealCards(deck.GetTopCards(5));
 			Console.WriteLine(player2);
 
 			//make sure deck is properly updated again

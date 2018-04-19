@@ -47,7 +47,7 @@ namespace Cards.CoreTests
 		public void Deck_Shuffle_Calls_Shuffle_On_Shuffling_Strategy()
 		{
 			Deck deck = new Deck(new PokerGame());
-			
+
 			var mock = new Mock<IShuffleStrategy>();
 			mock.Setup(x => x.Shuffle(It.IsAny<IList<Card>>())).Verifiable("shuffle was not called on strategy");
 
@@ -58,6 +58,88 @@ namespace Cards.CoreTests
 			mock.VerifyAll();
 		}
 
+		[Test]
+		public void Deck_GetTopCards_Throws_When_NumberofCards_IsZero()
+		{
+			Deck deck = new Deck(new PokerGame());
+
+			var mock = new Mock<IShuffleStrategy>();
+			mock.Setup(x => x.Shuffle(It.IsAny<IList<Card>>())).Verifiable("shuffle was not called on strategy");
+
+			Assert.That(() => deck.GetTopCards(0), Throws.ArgumentException);
+		}
+
+		[Test]
+		public void Deck_GetTopCards_Throws_When_NumberofCards_IsGreaterThan_52()
+		{
+			Deck deck = new Deck(new PokerGame());
+
+			var mock = new Mock<IShuffleStrategy>();
+			mock.Setup(x => x.Shuffle(It.IsAny<IList<Card>>())).Verifiable("shuffle was not called on strategy");
+
+			Assert.That(() => deck.GetTopCards(53), Throws.ArgumentException);
+		}
+
+		[Test]
+		public void Deck_GetTopCards_Shuffles_The_Deck()
+		{
+			Deck deck = new Deck(new PokerGame());
+
+			var mock = new Mock<IShuffleStrategy>();
+			mock.Setup(x => x.Shuffle(It.IsAny<IList<Card>>())).Verifiable("shuffle was not called on strategy");
+
+
+			Assert.IsFalse(deck.IsSorted);
+
+			var cards = deck.GetTopCards(2);
+
+			Assert.IsTrue(deck.IsSorted);
+		}
+
+		[Test]
+		public void Deck_FindCard_Returns_A_Card_When_Card_IsInDeck()
+		{
+			Deck deck = new Deck(new PokerGame());
+
+			var mock = new Mock<IShuffleStrategy>();
+			mock.Setup(x => x.Shuffle(It.IsAny<IList<Card>>())).Verifiable("shuffle was not called on strategy");
+
+			var actual = deck.FindCard(new Card(Suit.Spades, Value.Ace));
+
+			Assert.AreEqual(Value.Ace, actual.Value);
+
+			Assert.AreEqual(Suit.Spades, actual.Suit);
+		}
+
+		[Test]
+		public void Deck_FindCard_Returns_A_Card_When_Card_IsInNotDeck()
+		{
+			Deck deck = new Deck(new PokerGame());
+
+			var mock = new Mock<IShuffleStrategy>();
+			mock.Setup(x => x.Shuffle(It.IsAny<IList<Card>>())).Verifiable("shuffle was not called on strategy");
+
+			var actual = deck.FindCard(new Card(Suit.Spades, Value.Ace));
+
+			Assert.AreEqual(Value.Ace, actual.Value);
+
+			Assert.AreEqual(Suit.Spades, actual.Suit);
+		}
+
+		[Test]
+		public void Deck_FindCard_Returns_Updates_CardCount_When_CardIsFound()
+		{
+			Deck deck = new Deck(new PokerGame());
+
+			var mock = new Mock<IShuffleStrategy>();
+			mock.Setup(x => x.Shuffle(It.IsAny<IList<Card>>())).Verifiable("shuffle was not called on strategy");
+
+			Assert.AreEqual(52, deck.CardsCount);
+
+			var actual = deck.FindCard(new Card(Suit.Spades, Value.Ace));
+
+			Assert.AreEqual(51, deck.CardsCount);
+		}
 
 	}
 }
